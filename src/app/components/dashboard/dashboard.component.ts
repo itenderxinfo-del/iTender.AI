@@ -112,6 +112,13 @@ import { NavigationService } from '../../services/navigation.service';
                 <p>Manage work locations</p>
               </div>
             </button>
+            <button class="action-card" (click)="navigateToMeasureUnits()">
+              <div class="action-icon">📏</div>
+              <div class="action-content">
+                <h3>Measure Units</h3>
+                <p>Manage measurement units</p>
+              </div>
+            </button>
           </div>
         </div>
       </div>
@@ -556,5 +563,9 @@ export class DashboardComponent {
 
   navigateToLocations(): void {
     this.navigationService.navigateToLocations();
+  }
+
+  navigateToMeasureUnits(): void {
+    this.navigationService.navigateToMeasureUnits();
   }
 }

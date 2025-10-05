@@ -7,6 +7,7 @@ import { ThemeService } from './services/theme.service';
 import { LoginComponent } from './components/auth/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { UserManagementComponent } from './components/user-management/user-management.component';
+import { MeasureUnitsComponent } from './components/measure-units/measure-units.component';
 
 
 
@@ -19,7 +20,7 @@ interface DropdownState {
 @Component({
   selector: "app-root",
   standalone: true,
-  imports: [CommonModule, LoginComponent, DashboardComponent],
+  imports: [CommonModule, LoginComponent, DashboardComponent, MeasureUnitsComponent],
   template: `
     @if (!authService.isAuthenticated()) {
     <app-login />
@@ -110,7 +111,13 @@ interface DropdownState {
                   class="dropdown-item"
                   (click)="navigateToAuthorities(); closeDropdowns()"
                 >
-                  🛡️ Measure Units
+                  🛡️ Authorities
+                </button>
+                <button
+                  class="dropdown-item"
+                  (click)="navigateToMeasureUnits(); closeDropdowns()"
+                >
+                  📏 Measure Units
                 </button>
                 <button
                   class="dropdown-item"
@@ -231,7 +238,9 @@ interface DropdownState {
         @case ('projects') { } @case ('tasks') { } @case ('steps') { } @case
         ('locations') { } @case ('authorities') { } @case ('all-projects') { }
         @case ('activity-log') { } @case ('company-activity-log') { } @case
-        ('industries') { } @case ('activities') { } }
+        ('industries') { } @case ('activities') { } @case ('measure-units') {
+        <app-measure-units />
+        } }
       </main>
     </div>
     }
@@ -712,8 +721,11 @@ export class AppComponent {
   }
 
   navigateToIndustries(): void {
-    // New navigation method
     this.navigationService.navigateToIndustries();
+  }
+
+  navigateToMeasureUnits(): void {
+    this.navigationService.navigateToMeasureUnits();
   }
 
   toggleDropdown(dropdown: keyof DropdownState): void {
@@ -745,7 +757,8 @@ export class AppComponent {
       view === "activity-log" ||
       view === "company-activity-log" ||
       view === "industries" ||
-      view === "activities"
+      view === "activities" ||
+      view === "measure-units"
     );
   }
 

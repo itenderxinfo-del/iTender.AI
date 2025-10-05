@@ -1,7 +1,7 @@
 import { Injectable, signal } from '@angular/core';
 
 export interface NavigationState {
-  currentView: 'dashboard' | 'users' | 'companies' | 'customers' | 'projects' | 'all-projects' | 'tasks' | 'steps' | 'locations' | 'authorities' | 'activity-log' | 'company-activity-log' | 'industries' | 'company-details' | 'activities'; // Added activities
+  currentView: 'dashboard' | 'users' | 'companies' | 'customers' | 'projects' | 'all-projects' | 'tasks' | 'steps' | 'locations' | 'authorities' | 'activity-log' | 'company-activity-log' | 'industries' | 'company-details' | 'activities' | 'measure-units';
   selectedCustomerId?: string;
   selectedCompanyId?: string;
   selectedProjectId?: string;
@@ -125,9 +125,15 @@ export class NavigationService {
     });
   }
 
-  navigateToActivities(): void { // New navigation method
+  navigateToActivities(): void {
     this.navigationState.set({
       currentView: 'activities'
+    });
+  }
+
+  navigateToMeasureUnits(): void {
+    this.navigationState.set({
+      currentView: 'measure-units'
     });
   }
 }
